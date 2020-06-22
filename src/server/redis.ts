@@ -10,19 +10,19 @@ export function findRedisKeys(id: string): Promise<string[]> {
         getClient().keys(id + "*", function (err, keys) {
             if (err) reject(err);
 
-            const items = new Set<string>()
+            const items = new Set<string>();
 
             keys.forEach(str => {
                 let result = str.replace(id, "");
 
                 if (result.indexOf("/") > 0) {
-                    result = result.substring(0, result.indexOf("/"))
+                    result = result.substring(0, result.indexOf("/"));
                 }
 
-                items.add(result)
+                items.add(result);
             });
 
-            resolve(Array.from(items))
+            resolve(Array.from(items));
         });
     });
 }
