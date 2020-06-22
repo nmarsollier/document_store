@@ -10,14 +10,12 @@
     "license": "MIT",
     "scripts": {
         "start": "npm run build && npm run watch",
-        "build": "npm run build-ts && npm run tslint && npm run apidoc && npm run apidocmd",
+        "build": "npm run build-ts && npm run tslint",
         "serve": "node dist/server.js",
         "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\"  \"npm run watch-ts\" \"nodemon dist/server.js\"",
         "build-ts": "tsc -p tsconfig.json",
         "watch-ts": "tsc -w -p tsconfig.json",
-        "tslint": "tslint -c tslint.json -p tsconfig.json",
-        "apidoc": "./node_modules/.bin/apidoc -i src -o ./dist/public",
-        "apidocmd": "./node_modules/.bin/apidoc-markdown2 -p ./dist/public -o README-API.md"
+        "tslint": "tslint -c tslint.json -p tsconfig.json"
     },
     "dependencies": {
         "body-parser": "1.19.0",
