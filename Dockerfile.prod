@@ -1,0 +1,14 @@
+# Docker para produccion o stage
+FROM node:14.3.0
+
+ENV REDIS_URL host.docker.internal
+
+WORKDIR /app
+RUN curl -L https://github.com/nmarsollier/document_store/tarball/master | tar xz --strip=1
+RUN npm install --silent
+RUN npm run build
+
+# Puerto para image service
+EXPOSE 3001
+
+CMD cd dist; node server.js
