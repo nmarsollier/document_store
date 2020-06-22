@@ -33,7 +33,7 @@ export function newError(code: number, err: string): ValidationErrorMessage {
 }
 
 export function handle(res: express.Response, err: any): express.Response {
-  if(!err) {
+  if (!err) {
     return res.send(sendUnknown(res, err));
   } else if (err instanceof ValidationErrorMessage) {
     // ValidationErrorMessage

@@ -18,7 +18,7 @@ function create(req: express.Request, res: express.Response) {
 }
 
 function find(req: express.Request, res: express.Response) {
-  if(req.query.list == "true") {
+  if (req.query.list == "true") {
     search(req, res)
   } else {
     findById(req, res)

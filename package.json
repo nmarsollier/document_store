@@ -1,10 +1,10 @@
 {
-    "name": "object-store",
+    "name": "document_store",
     "version": "0.1.0",
     "description": "Object Store Mock",
     "repository": {
         "type": "git",
-        "url": "https://github.com/nmarsollier/2018_microservicios.git"
+        "url": "https://github.com/nmarsollier/document_store.git"
     },
     "author": "Nestor Marsollier",
     "license": "MIT",

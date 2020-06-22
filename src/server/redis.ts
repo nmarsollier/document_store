@@ -15,9 +15,8 @@ export function findRedisKeys(id: string): Promise<string[]> {
             keys.forEach(str => {
                 let result = str.replace(id, "");
 
-                if(result.indexOf("/") > 0) {
+                if (result.indexOf("/") > 0) {
                     result = result.substring(0, result.indexOf("/"))
- 
                 }
 
                 items.add(result)
