@@ -15,7 +15,7 @@ Es solo para pruebas locales, para simular un servidor restful de contenidos, no
 Podemos instalar un docker para esto
 
 ```bash
-docker run -d --name ec-redis -p 6379:6379 redis:5.0.9-buster
+docker run -d --name document-redis -p 6379:6379 redis:5.0.9-buster
 ```
 
 ## Variables de entorno
