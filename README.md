@@ -60,8 +60,8 @@ docker build --no-cache -t document_store https://github.com/nmarsollier/documen
 
 ```bash
 # Mac | Windows
-docker run -d --name document_store -p 3000:3000 document_store
+docker run -d --name document_store -p 3001:3001 document_store
 
 # Linux
-docker run --add-host host.docker.internal:172.17.0.1 -d --name document_store -p 3000:3000 document_store
+docker run --add-host host.docker.internal:172.17.0.1 -d --name document_store -p 3001:3001 document_store
 ```
