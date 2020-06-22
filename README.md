@@ -12,11 +12,16 @@ Es solo para pruebas locales, para simular un servidor restful de contenidos, no
 
 ## Redis
 
-Las imágenes se almacenan en una instancia de Redis. Seguir los pasos de instalación desde la pagina oficial [redis.io](https://redis.io/download)
+Podemos instalar un docker para esto
 
-No se requiere ninguna configuración adicional, solo levantarlo luego de instalarlo.
+```bash
+docker run -d --name ec-redis -p 6379:6379 redis:5.0.9-buster
+```
 
-Tambien se puede instalar usando docker, ver notas en [ecommerce](https://github.com/nmarsollier/ecommerce)
+## Variables de entorno
+
+Todo se configura desde variables de entorno.
+Ver environmnet.ts para ver las variables que se pueden configurar.
 
 ## Endpoints
 
