@@ -13,13 +13,7 @@ export function findRedisKeys(id: string): Promise<string[]> {
             const items = new Set<string>();
 
             keys.forEach(str => {
-                let result = str.replace(id, "");
-
-                if (result.indexOf("/") > 0) {
-                    result = result.substring(0, result.indexOf("/"));
-                }
-
-                items.add(result);
+                items.add(str);
             });
 
             resolve(Array.from(items));

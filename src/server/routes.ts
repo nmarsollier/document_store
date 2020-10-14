@@ -5,9 +5,8 @@ import { Express } from "express";
 import * as resource from "../resource";
 import * as error from "./error";
 
-export function init(app: Express) {
+export function init(app: Express) {  
   app.route("*").put(create);
-
   app.route("*").get(find);
 }
 

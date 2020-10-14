@@ -3,10 +3,20 @@
 import * as redis from "../server/redis";
 import { Resource } from "./schema";
 
-export async function findKeysById(id: string): Promise<string[]> {
+interface FilesResult {
+  files: string[];
+  folders: string[];
+  marker: string;
+}
+
+export async function findKeysById(id: string): Promise<FilesResult> {
   try {
     const reply = await redis.findRedisKeys(id);
-    return Promise.resolve(reply);
+    return Promise.resolve({
+      files: reply,
+      folders: [],
+      marker: ""
+    });
   } catch (err) {
     return Promise.reject(err);
   }
