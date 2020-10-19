@@ -9,14 +9,22 @@ interface FilesResult {
   marker: string;
 }
 
-export async function findKeysById(id: string): Promise<FilesResult> {
+export async function findKeysById(id: string, singleLevel: boolean): Promise<FilesResult> {
   try {
-    const reply = await redis.findRedisKeys(id);
-    return Promise.resolve({
-      files: reply,
-      folders: [],
-      marker: ""
-    });
+    const reply = await redis.findRedisKeys(id, singleLevel);
+    if (!singleLevel || reply.type == redis.ResultType.file) {
+      return Promise.resolve({
+        files: reply.data,
+        folders: [],
+        marker: ""
+      });
+    } else {
+      return Promise.resolve({
+        files: [],
+        folders: reply.data,
+        marker: ""
+      });
+    }
   } catch (err) {
     return Promise.reject(err);
   }

@@ -26,7 +26,8 @@ function find(req: express.Request, res: express.Response) {
 
 function search(req: express.Request, res: express.Response) {
   const id = req.path;
-  resource.findKeysById(id)
+  const singleLevel = req.query.singleLevel == "true";
+  resource.findKeysById(id, singleLevel)
     .then(d => res.json(d))
     .catch(err => error.handle(res, err));
 }

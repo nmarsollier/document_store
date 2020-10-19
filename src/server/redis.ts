@@ -5,18 +5,40 @@ import * as appConfig from "./environment";
 const conf = appConfig.getConfig(process.env);
 let redisClient: redis.Redis;
 
-export function findRedisKeys(id: string): Promise<string[]> {
+export enum ResultType {
+    file, folder
+}
+
+export interface FindResult {
+    data: string[];
+    type: ResultType;
+}
+
+export function findRedisKeys(id: string, singleLevel: boolean): Promise<FindResult> {
     return new Promise((resolve, reject) => {
         getClient().keys(id + "*", function (err, keys) {
             if (err) reject(err);
 
             const items = new Set<string>();
+            let type = ResultType.file;
 
             keys.forEach(str => {
-                items.add(str);
+                let result = str;
+                if (singleLevel) {
+                    result = str.replace(id, "");
+
+                    if (result.indexOf("/") > 0) {
+                        result = result.substring(0, result.indexOf("/") + 1);
+                        type = ResultType.folder;
+                    }
+                }
+                items.add(id + result);
             });
 
-            resolve(Array.from(items));
+            resolve({
+                data: Array.from(items),
+                type
+            });
         });
     });
 }
